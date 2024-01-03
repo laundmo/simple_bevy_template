@@ -1,0 +1,24 @@
+use bevy::prelude::*;
+
+// use bevy_screen_diagnostics::ScreenDiagnosticsPlugin;
+// use bevy_screen_diagnostics::ScreenEntityDiagnosticsPlugin;
+// use bevy_screen_diagnostics::ScreenFrameDiagnosticsPlugin;
+
+fn main() {
+    App::new()
+        .insert_resource(ClearColor(Color::rgba(0., 0., 0., 0.1)))
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                title: "{{project-name}}".to_string(),
+                ..default()
+            }),
+            ..default()
+        }))
+        // .add_plugins(ScreenDiagnosticsPlugin::default())
+        // .add_plugins(ScreenFrameDiagnosticsPlugin)
+        // .add_plugins(ScreenEntityDiagnosticsPlugin)
+        .add_systems(Startup, setup)
+        .run();
+}
+
+fn setup(mut commands: Commands) {}
