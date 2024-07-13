@@ -1,0 +1,15 @@
+[Bevy]
+Description=Bevy
+above=true
+aboverule=2
+fsplevel=4
+fsplevelrule=2
+ignoregeometry=true
+ignoregeometryrule=2
+position=0,0
+positionrule=3
+size=1280,720
+sizerule=4
+types=1
+wmclass=bevy.app
+wmclassmatch=2
