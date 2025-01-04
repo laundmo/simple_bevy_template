@@ -1,0 +1,6 @@
+[toolchain]
+{% if use_nightly -%}
+channel = "nightly"
+{% else -%}
+channel = "stable"
+{% endif -%}

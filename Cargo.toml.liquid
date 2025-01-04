@@ -4,11 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = { version = "0.14", features = ["dynamic_linking", "file_watcher"] }
+bevy = { version = "0.15", features = ["dynamic_linking", "file_watcher"] }
 
 # Enable a small amount of optimization in debug mode
 [profile.dev]
+{% if use_cranelift %}
+opt-level = 3 # negligibly slower compiles than 1
+{% else %}
 opt-level = 1
+{% endif %}
 
 # Enable high optimizations for dependencies (incl. Bevy), but not for our code:
 [profile.dev.package."*"]

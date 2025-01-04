@@ -1,0 +1,51 @@
+{% if use_cranelift -%}
+# cranelift compiler backend
+[unstable]
+codegen-backend = true
+
+[profile.dev]
+codegen-backend = "cranelift"
+opt-level = 3 # minimal benefit of reducing opt level here, cranelift perf is already bad enough
+
+[profile.dev.package."*"]
+codegen-backend = "llvm"
+opt-level = 3
+{%- endif %}
+
+[target.x86_64-unknown-linux-gnu]
+linker = "clang"
+rustflags = [
+  "-Clink-arg=-fuse-ld=/usr/bin/mold",
+{% if use_nightly -%}
+  # Nightly
+  "-Zshare-generics=y",
+{% endif -%}
+{% if use_parallel_frontend -%}
+  "-Zthreads=0",
+{% endif -%}
+]
+
+# NOTE: you must install [Mach-O LLD Port](https://lld.llvm.org/MachO/index.html) on mac. you can easily do this by installing llvm which includes lld with the "brew" package manager:
+# `brew install llvm`
+[target.x86_64-apple-darwin]
+rustflags = [
+  "-C",
+  "link-arg=-fuse-ld=/usr/local/opt/llvm/bin/ld64.lld",
+{% if use_nightly -%}
+  "-Zshare-generics=y",
+{% endif -%}
+]
+
+[target.aarch64-apple-darwin]
+rustflags = [
+  "-C",
+  "link-arg=-fuse-ld=/opt/homebrew/opt/llvm/bin/ld64.lld",
+{% if use_nightly -%}
+  "-Zshare-generics=y",
+{% endif -%}
+]
+
+[target.x86_64-pc-windows-msvc]
+linker = "rust-lld.exe"
+# cannot use share-generics on windows due to dynamic_linking symbol limit
+rustflags = ["-Zshare-generics=n"]

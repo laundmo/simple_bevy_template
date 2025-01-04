@@ -1,0 +1,20 @@
+[template]
+ignore = ["readme.md"]
+
+[placeholders]
+gen_config = { type = "bool", prompt = "Generate toolchain/cargo config?", default = true }
+
+[conditional.'gen_config == false']
+ignore = [
+    "rust-toolchain.toml",
+    ".cargo",
+    ".cargo/config.toml",
+    "kde_rule.kwinrule",
+]
+
+[conditional.'gen_config == true'.placeholders]
+use_nightly = { type = "bool", prompt = "Use nightly?", default = true }
+
+[conditional.'use_nightly == true'.placeholders]
+use_cranelift = { type = "bool", prompt = "Use cranelift?", default = true }
+use_parallel_frontend = { type = "bool", prompt = "Use parallel frontend?", default = true }
