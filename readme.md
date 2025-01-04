@@ -1,7 +1,12 @@
 # Basic Bevy template
 Basic Bevy project template to get started quickly.
 
-- Always uses Mold on linux
+create with
+```bash
+cargo generate laundmo/simple_bevy_template
+```
+
+- Always uses Mold on linux, you need it installed (!!)
 - Optional Nightly Rust
   - Generics Sharing
   - Cranelift and Parallel frontend configurable
