@@ -1,5 +1,5 @@
 [toolchain]
-{% if use_nightly -%}
+{% if use_nightly || skip_config -%}
 channel = "nightly"
 {% else -%}
 channel = "stable"
