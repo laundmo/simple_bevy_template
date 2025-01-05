@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# remove "dynamic_linking" before release, its for development only
 bevy = { version = "0.15", features = ["dynamic_linking", "file_watcher"] }
 
 # Enable a small amount of optimization in debug mode
