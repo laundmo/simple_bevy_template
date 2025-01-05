@@ -3,13 +3,16 @@ use bevy::prelude::*;
 fn main() {
     App::new()
         .insert_resource(ClearColor(Color::srgb(0.2, 0.2, 0.2)))
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                name: "bevy.app".to_string().into(),
+        .add_plugins(DefaultPlugins.set(
+            // set window name for the KDE window rule (or your own)
+            WindowPlugin {
+                primary_window: Some(Window {
+                    name: "bevy.app".to_string().into(),
+                    ..default()
+                }),
                 ..default()
-            }),
-            ..default()
-        }))
+            },
+        ))
         .add_systems(Startup, setup)
         .run();
 }
