@@ -1,9 +1,15 @@
 # Basic Bevy template
 Basic Bevy project template to get started quickly.
 
-create with
+Use this template with:
 ```bash
 cargo generate laundmo/simple_bevy_template
+```
+
+Prerequesites for cranelift:
+```bash
+rustup toolchain install nightly
+rustup component add rustc-codegen-cranelift-preview --toolchain nightly
 ```
 
 - Always uses Mold on linux, you need it installed (!!)
